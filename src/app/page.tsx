@@ -1,9 +1,9 @@
 "use client";
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 
-export default function Home() {
+const Home = () => {
   //sync query string with input
   const router = useRouter();
   const pathname = usePathname();
@@ -53,5 +53,13 @@ export default function Home() {
         allowFullScreen
       ></iframe>
     </div>
+  );
+};
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Home />
+    </Suspense>
   );
 }
